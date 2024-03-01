@@ -10,15 +10,11 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.comunidadedevspace.taskbeats.R
-import com.comunidadedevspace.taskbeats.data.AppDatabase
 import com.comunidadedevspace.taskbeats.data.Task
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
@@ -29,17 +25,10 @@ class MainActivity : AppCompatActivity() {
         TaskListAdapter(::onListItemClicked)
     }
 
-    private val dataBase by lazy {
-
-        Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "tasklist-database"
-        ).build()
+    private val viewModel: TaskListViewModel by lazy {
+        TaskListViewModel.create(application)
     }
 
-    private val dao by lazy {
-        dataBase.taskDao()
-    }
 
     private val startForResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -48,13 +37,9 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data
             val taskAction = data?.getSerializableExtra(TASK_ACTION_RESULT) as TaskAction
-            val task: Task = taskAction.task
 
-            when (taskAction.actionType) {
-                ActionType.DELETE.name -> deleteById(task.id)
-                ActionType.CREATE.name -> insertIntoDatabase(task)
-                ActionType.UPDATE.name -> updateIntoDatabase(task)
-            }
+            viewModel.execute(taskAction)
+
         }
     }
 
@@ -63,10 +48,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task_list)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        listFromDataBase()
-
         ctnContent = findViewById(R.id.ctn_content)
-
 
         val rvTasks: RecyclerView = findViewById(R.id.rv_task_list)
         rvTasks.adapter = adapter
@@ -77,42 +59,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun insertIntoDatabase(task: Task) {
-        CoroutineScope(IO).launch {
-            dao.insertTask(task)
-            listFromDataBase()
-        }
-    }
-
-    private fun updateIntoDatabase(task: Task) {
-        CoroutineScope(IO).launch {
-            dao.updateTask(task)
-            listFromDataBase()
-        }
+    override fun onStart() {
+        super.onStart()
+        listFromDataBase()
     }
 
     private fun deleteAll() {
-        CoroutineScope(IO).launch {
-            dao.deleteAll()
-            listFromDataBase()
-        }
-
+        val taskAction = TaskAction(null, ActionType.DELETE_ALL.name)
+        viewModel.execute(taskAction)
     }
 
-    private fun deleteById(id: Int) {
-        CoroutineScope(IO).launch {
-            dao.deleteById(id)
-            listFromDataBase()
-        }
-
-    }
 
     private fun listFromDataBase() {
-        CoroutineScope(IO).launch {
-            val myDataBaseList: List<Task> = dao.getAllTasks()
-            adapter.submitList(myDataBaseList)
+        val listObserver = Observer<List<Task>> { listTasks ->
 
+            if (listTasks.isEmpty()){
+                ctnContent.visibility = View.VISIBLE
+            }else{
+                ctnContent.visibility = View.GONE
+            }
+
+            adapter.submitList(listTasks)
         }
+        viewModel.taskListLiveData.observe(this@MainActivity, listObserver)
     }
 
     private fun showMessage(view: View, message: String) {
@@ -150,16 +119,16 @@ class MainActivity : AppCompatActivity() {
 
 enum class ActionType {
     DELETE,
+    DELETE_ALL,
     UPDATE,
     CREATE
 }
 
 data class TaskAction(
-    val task: Task,
+    val task: Task?,
     val actionType: String
 ) : Serializable
 
 const val TASK_ACTION_RESULT = "TASK_ACTION_RESULT"
-
 
 
