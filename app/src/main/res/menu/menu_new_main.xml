@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/task_list"
+        android:icon="@drawable/baseline_list_bulleted_24"
+        app:showAsAction="always"
+        android:title="tasks"/>
+
+    <item android:id="@+id/news_list"
+        android:icon="@drawable/baseline_article_24"
+        android:title="news"
+        app:showAsAction="always"/>
+
+</menu>
