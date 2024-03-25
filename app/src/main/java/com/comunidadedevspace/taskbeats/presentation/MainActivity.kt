@@ -1,18 +1,25 @@
 package com.comunidadedevspace.taskbeats.presentation
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.comunidadedevspace.taskbeats.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class NewMainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_main)
+        setContentView(R.layout.activity_main)
 
         val bottonNavView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        val floatActionButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+
+        floatActionButton.setOnClickListener{
+
+            openTaskListDetail()
+
+        }
 
         val taskListFragment = TaskListFragment.newInstance()
         val newsListFragment = NewsListFragment.newInstance()
@@ -37,5 +44,12 @@ class NewMainActivity : AppCompatActivity() {
             }
             true
         }
+
+
+    }
+
+    private fun openTaskListDetail() {
+        val intent = TaskDetailActivity.start(this, null)
+        startActivity(intent)
     }
 }
