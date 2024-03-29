@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.activity:activity:1.8.2'
-    implementation "io.coil-kt:coil:2.3.0"
+    implementation 'io.coil-kt:coil:2.3.0'
 
     def fragment_version = "1.6.2"
 
@@ -51,6 +51,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx"
 
     def lifecycle_version = "2.5.1"
     def arch_version = "2.1.0"
