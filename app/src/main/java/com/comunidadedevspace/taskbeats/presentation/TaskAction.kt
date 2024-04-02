@@ -1,6 +1,6 @@
 package com.comunidadedevspace.taskbeats.presentation
 
-import com.comunidadedevspace.taskbeats.data.Task
+import com.comunidadedevspace.taskbeats.data.local.Task
 import java.io.Serializable
 
 enum class ActionType {

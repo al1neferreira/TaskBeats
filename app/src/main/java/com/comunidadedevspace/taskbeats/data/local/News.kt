@@ -1,4 +1,4 @@
-package com.comunidadedevspace.taskbeats.data
+package com.comunidadedevspace.taskbeats.data.local
 
 data class News(
     val title: String,

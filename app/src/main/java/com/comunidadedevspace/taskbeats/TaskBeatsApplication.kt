@@ -2,7 +2,7 @@ package com.comunidadedevspace.taskbeats
 
 import android.app.Application
 import androidx.room.Room
-import com.comunidadedevspace.taskbeats.data.AppDatabase
+import com.comunidadedevspace.taskbeats.data.local.AppDatabase
 
 class TaskBeatsApplication : Application() {
 
@@ -16,7 +16,7 @@ class TaskBeatsApplication : Application() {
             AppDatabase::class.java, "tasklist-database"
         ).build()
     }
-    fun getAppDataBase():AppDatabase{
+    fun getAppDataBase(): AppDatabase {
         return dataBase
     }
 }

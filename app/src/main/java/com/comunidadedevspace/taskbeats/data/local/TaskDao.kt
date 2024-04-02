@@ -1,4 +1,4 @@
-package com.comunidadedevspace.taskbeats.data
+package com.comunidadedevspace.taskbeats.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
