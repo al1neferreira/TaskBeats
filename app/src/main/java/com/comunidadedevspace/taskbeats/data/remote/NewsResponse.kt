@@ -1,17 +1,17 @@
 package com.comunidadedevspace.taskbeats.data.remote
 
-class NewsResponse (
+import com.google.gson.annotations.SerializedName
 
-    val category: String,
+data class NewsResponse (
     val data: List<NewsDTO>
-
-
-
 )
 
 data class NewsDTO(
+    @SerializedName("uuid")
     val id: String,
+    @SerializedName("snippet")
     val content:String,
+    @SerializedName("image_url")
     val imageUrl: String,
     val title: String
 )

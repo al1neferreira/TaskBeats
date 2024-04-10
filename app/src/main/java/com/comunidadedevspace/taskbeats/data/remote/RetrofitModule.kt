@@ -1,6 +1,5 @@
 package com.comunidadedevspace.taskbeats.data.remote
 
-import com.comunidadedevspace.taskbeats.BuildConfig
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +16,6 @@ object RetrofitModule {
           HttpLoggingInterceptor.Level.BODY
         }
 
-        val apiKey = BuildConfig.API_KEY
 
         val client:OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(logging)
@@ -26,7 +24,7 @@ object RetrofitModule {
         val retrofit = Retrofit
             .Builder()
             .client(client)
-            .baseUrl("https://inshorts.deta.dev/")
+            .baseUrl("https://api.thenewsapi.com/v1/news/")
             .addConverterFactory(
                 GsonConverterFactory.create(Gson())
             )
