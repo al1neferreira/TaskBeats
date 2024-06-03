@@ -1,5 +1,5 @@
 # TaskBeats
-Aplicativo de tarefas ccom consumo de API e armazenamento de informações com bando de dados local. 
+Aplicativo de tarefas ccom consumo de API e armazenamento de informações com banco de dados local. 
 
 ## :camera_flash: Screenshots
 
