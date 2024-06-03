@@ -18,6 +18,7 @@ class TaskDetailViewModel(
             ActionType.DELETE.name -> deleteById(taskAction.task!!.id)
             ActionType.CREATE.name -> insertIntoDatabase(taskAction.task!!)
             ActionType.UPDATE.name -> updateIntoDatabase(taskAction.task!!)
+            ActionType.DELETE_ALL.name ->deleteAll(taskAction.task!!)
         }
 
     }
@@ -37,6 +38,12 @@ class TaskDetailViewModel(
     private fun updateIntoDatabase(task: Task) {
         viewModelScope.launch {
             taskDao.update(task)
+        }
+    }
+
+    private fun deleteAll(task:Task){
+        viewModelScope.launch {
+            taskDao.deleteAll()
         }
     }
 

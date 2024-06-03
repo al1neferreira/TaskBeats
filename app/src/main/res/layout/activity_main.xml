@@ -37,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@+id/bottomAppBar"
+        android:backgroundTint="@color/pink_500"
         app:srcCompat="@drawable/baseline_add_24"
-        app:tint="@color/white" />
+        app:tint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/task_list"
+    <item
+        android:id="@+id/task_list"
         android:icon="@drawable/baseline_list_bulleted_24"
-        app:showAsAction="always"
-        android:title="tasks"/>
-
-    <item android:id="@+id/news_list"
-        android:icon="@drawable/baseline_article_24"
-        android:title="news"
+        android:iconTint="@color/pink_500"
+        android:title="tasks"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/news_list"
+        android:icon="@drawable/baseline_article_24"
+        android:iconTint="@color/pink_500"
+        android:title="news"
+        app:showAsAction="always" />
 
 </menu>

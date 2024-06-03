@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="30dp"
     tools:context=".presentation.TaskDetailActivity">
 
     <include layout="@layout/toolbar"/>
@@ -47,7 +48,9 @@
     <Button
         android:id="@+id/btn_done"
         style="@style/ButtonPrimary"
-        android:layout_width="match_parent"
+        android:backgroundTint="@color/pink_500"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"

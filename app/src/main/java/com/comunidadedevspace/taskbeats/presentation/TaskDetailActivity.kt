@@ -43,7 +43,8 @@ class TaskDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_detail)
         setSupportActionBar(findViewById(R.id.toolbar))
-
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
 
         task = intent.getSerializableExtra(TASK_DETAIL_EXTRA) as Task?
 

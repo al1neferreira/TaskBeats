@@ -6,7 +6,8 @@ import java.io.Serializable
 enum class ActionType {
     DELETE,
     UPDATE,
-    CREATE
+    CREATE,
+    DELETE_ALL
 }
 
 data class TaskAction(
