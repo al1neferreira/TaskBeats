@@ -1,5 +1,5 @@
-# My Business Card
-Aplicativo Android nativo desenvolvido como cartão de visitas. 
+# TaskBeats
+Aplicativo de tarefas ccom consumo de API e armazenamento de informações com bando de dados local. 
 
 ## :camera_flash: Screenshots
 
@@ -14,6 +14,7 @@ Aplicativo Android nativo desenvolvido como cartão de visitas.
 * Kotlin
 * MVVM
 * REST API
-* RETROFIT
+* Retrofit
 * Async
 * Coroutines
+* Room Database
