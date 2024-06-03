@@ -12,3 +12,8 @@ Aplicativo Android nativo desenvolvido como cartão de visitas.
 
 ## Tecnologias
 * Kotlin
+* MVVM
+* REST API
+* RETROFIT
+* Async
+* Coroutines
